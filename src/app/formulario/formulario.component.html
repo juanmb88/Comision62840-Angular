@@ -1,0 +1,38 @@
+<div class="container mt-5 bg-primary">
+    <div class="card w-auto p-3 bg-warning">
+
+        <div>
+            <p class="bg-light text-center">Hola desde acá en adelante estamos en la clase 06 y vamos a crear un formulario este es la manera explicada para <b>reactive-forms</b> </p>
+        </div>
+        <div class="row">
+
+            <div class="col-6 ">
+                <form class="bg-light" [formGroup]="loginForms">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Correo Electrónico</label>
+                        <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <div id="emailHelp" class="form-text">Nunca compartiremos tu correo con nadie más.</div>
+                    </div>
+                    Elcampo es valido : {{loginForms.get("email")?.valid}}
+                    <div class="mb-3">
+                        <label  for="exampleInputPassword1" class="form-label">Contraseña</label>
+                        <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input formControlName="checkBox" type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Recuérdame</label>
+                    </div>
+                    <button type="submit" class="m-5 btn btn-primary">Enviar</button>
+                </form>
+            </div>
+            <div class="col-6 row">
+                <pre>
+                    {{loginForms.value | json}}
+                </pre>
+    
+            </div>
+        </div>
+
+
+    </div>
+</div>

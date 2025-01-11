@@ -1,0 +1,97 @@
+<p ngClass = "success">header works!</p>
+<p ngClass = "error">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis nisi totam id eveniet, sed suscipit laboriosam, iste vel sit omnis temporibus laborum sunt expedita qui commodi voluptatum? Earum praesentium consectetur nam, pariatur suscipit a? Cupiditate quas ex deserunt necessitatibus rem dignissimos sit dolor quae quo architecto magnam, quis iure, sapiente, rerum culpa. Possimus quo rerum velit, tenetur atque excepturi eius ratione soluta, in hic reiciendis voluptatum vitae pariatur fugiat deserunt nam veniam similique ut totam? Laborum veniam amet quos consequuntur distinctio modi, iste cumque quibusdam minima voluptatibus nobis, temporibus, doloremque excepturi reprehenderit quisquam magnam itaque! Eius aut asperiores sed facere ipsa dolore obcaecati ipsum dolor commodi libero exercitationem nulla molestiae vel, qui voluptatibus eos sit praesentium rerum labore deserunt vero.</p>
+
+<p appResaltado>
+
+    aca esta el resaltado
+</p>
+
+<p
+  [ngClass]="{
+    entregado: estadoEnvio === 'entregado',
+    error: estadoEnvio === 'rechazado',
+    pending: estadoEnvio === 'pendiente'
+  }"
+>
+Probando los estados 
+</p>
+
+<p
+  [style.text-decoration]="hayError ? 'overline' : 'underline'"
+  [ngStyle]="{
+    fontSize: hayError ? 'x-large' : 'small'
+  }"
+>
+probando los ngStyle
+</p>
+
+
+<p *ngIf="cargando; else tablaUsuariosTemplate">  Cargando, por favor espere...
+</p>
+<ng-template #tablaUsuariosTemplate>
+        <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+             <!--  <tr
+                *ngFor="let videojuego of videojuegos; let i = index"
+              >
+                <td>{{ i }}</td>
+                <td>{{ videojuegos }}</td>
+              </tr> -->
+            </tbody>
+          </table>  
+</ng-template>
+<hr/>
+@if (cargando) {
+    <p>Cargando, por favor espere...</p>
+    } @else {
+    <table>
+      <tbody>
+        @for (estudiante of estudiantes; track $index) {
+        <tr>
+          <td>{{ $index + 1 }}</td>
+          <td>{{ estudiante }}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+    }
+
+    <hr>
+    <hr>
+    <hr>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Fecha</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          [ngClass]="videojuego.soldout ? 'error' : 'success'"
+          *ngFor="let videojuego of videojuegos; let i = index"
+        >
+          <td>{{ i + 1 }}</td>
+          <td>{{ videojuego.nombre }}</td>
+          <td>{{ videojuego.lanzamiento | date : "dd-MM-YYYY" }}</td>
+          <td>
+            <button
+              [disabled]="videojuego.soldout"
+              (click)="agregarAlCarrito(videojuego)"
+            >
+              Agregar al carrito
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
